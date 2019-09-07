@@ -54,8 +54,9 @@ def update_prisoner(username: str, prisoner: Prisoner) -> JSONResponse:
 	if not data.get(username):
 		return JSONResponse({'error': NOT_FOUND}, 404)
 
-	data[prisoner.id] = prisoner
-	return JSONResponse(Prisoner(prisoner, 200))
+	prisoner.username = username
+	data[username] = prisoner
+	return JSONResponse(Prisoner(prisoner), 200)
 
 
 def remove_prisoner(username):
